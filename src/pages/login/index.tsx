@@ -10,7 +10,8 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 
 
-import { Container, ErrorText, Title, Column, TitleLogin, SubtitleLogin, EsqueciText, CriarText, Row, Wrapper } from './styles';
+import { Container, Title, Column, TitleLogin, SubtitleLogin, EsqueciText, CriarText, Row, Wrapper } from './styles';
+import { IFormData } from "./types";
 
 
 const schema = yup.object({
@@ -23,14 +24,14 @@ const Login = () => {
 
     const navigate = useNavigate()
 
-    const { control, handleSubmit, formState: { errors, isValid } } = useForm({
+    const { control, handleSubmit, formState: { errors, isValid } } = useForm<IFormData>({
         resolver: yupResolver(schema),
         mode: 'onChange',
     });
 
-    const onSubmit = async (formData) => {
+    const onSubmit = async (formData: IFormData) => {
         try{
-            const {data} = await api.get(`/users?email=${formData.email}&senha=${formData.senha}`);
+            const {data} = await api.get(`/users?email=${formData.email}&password=${formData.password}`);
             
             if(data.length && data[0].id){
                 navigate('/feed') 
