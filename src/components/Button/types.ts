@@ -1,5 +1,3 @@
-import { type } from "os";
-
 export interface IButton {
     title: string; 
     variant?: string; 

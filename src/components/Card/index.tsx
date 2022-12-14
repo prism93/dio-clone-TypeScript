@@ -1,5 +1,5 @@
 import { FiThumbsUp } from 'react-icons/fi'
-import React from 'react'
+
 
 import { 
   CardContainer,
